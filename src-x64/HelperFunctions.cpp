@@ -25,7 +25,7 @@ std::string toTime(int prmSeconds) {
 //' @param prmSeconds The amount of seconds to convert.
 //' @return The value of prmSeconds in minutes and seconds.
 //' @export
-//' @useDynLib XCTrackerCpp
+//' @useDynLib XCTrackerCpp4
 //' @importFrom Rcpp evalCpp
 // [[Rcpp::export]]
 StringVector toTime(NumericVector prmSeconds) {
