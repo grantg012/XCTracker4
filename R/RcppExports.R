@@ -6,7 +6,7 @@
 #' @param prmSeconds The amount of seconds to convert.
 #' @return The value of prmSeconds in minutes and seconds.
 #' @export
-#' @useDynLib XCTrackerCpp
+#' @useDynLib XCTrackerCpp4
 #' @importFrom Rcpp evalCpp
 toTime <- function(prmSeconds) {
     .Call('XCTrackerCpp4_toTime', PACKAGE = 'XCTrackerCpp4', prmSeconds)
