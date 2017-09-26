@@ -96,8 +96,8 @@ double inSeconds(std::string raceTime) {
             fracDenom *= 10;
         }
 
-    if(fraction.length() > 0) // Only allow stod() calls when fraction != ""
-        nullFrac = std::stod(fraction);
+    if(fraction.length() > 0) // Only allow stoi() calls when fraction != ""
+        nullFrac = std::stoi(fraction);
 
     return std::stoi(minutes) * 60 + std::stoi(seconds) +
         nullFrac / fracDenom;
