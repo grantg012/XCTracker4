@@ -5,7 +5,7 @@ using namespace Rcpp;
 
 /*
  * NOTE NAMESPACE MUST HAVE exportPattern("^[[:alpha:]]+") TO COMPILE
- * ROXYGEN2 MIGHT DELETE THIS
+ * ROXYGEN2 WILL DELETE THIS
  */
 
 
@@ -16,23 +16,30 @@ std::string leadingZero(int value) {
         return std::to_string(value);
 }
 
-std::string toTime(int prmSeconds) {
-    return "" + std::to_string(prmSeconds / 60) + ":" + leadingZero(prmSeconds % 60);
+std::string toTime(double prmSeconds) {
+    std::string time = std::to_string((int)prmSeconds / 60) + ':';
+    time += leadingZero((int)prmSeconds % 60);
+    int postDecimal = (int)(prmSeconds * 1000) % 1000;
+    if(postDecimal > 0) {
+        time += '.';
+        time += std::to_string(postDecimal);
+    }
+    return time;
 }
 
-//' Converts seconds to a formatted time, such as "16:26" (Vectorized).
+//' Converts seconds to a formatted time, such as "16:26.731" (Vectorized).
 //'
-//' @param prmSeconds The amount of seconds to convert.
+//' @param prmSeconds The amount of seconds to convert (ex: 986.731).
 //' @return The value of prmSeconds in minutes and seconds.
 //' @export
-//' @useDynLib XCTrackerCpp4
+//' @useDynLib XCTrackerCpp
 //' @importFrom Rcpp evalCpp
 // [[Rcpp::export]]
 StringVector toTime(NumericVector prmSeconds) {
     StringVector result(prmSeconds.length());
 
     for(int i = 0; i < result.length(); i++) {
-        result[i] = toTime((int)prmSeconds[i]);
+        result[i] = toTime(prmSeconds[i]);
     }
 
     return result;
@@ -64,8 +71,9 @@ IntegerVector gradeToInt(StringVector grades) {
     return numbers;
 }
 
-int inSeconds(std::string raceTime) {
-    std::string minutes = "", seconds = "";
+double inSeconds(std::string raceTime) {
+    std::string minutes = "", seconds = "", fraction = "";
+    double fracDenom = 1;
     unsigned int i = 0;
     for(; i < raceTime.length(); i++)
         if(raceTime[i] == '.' || raceTime[i] == ':')
@@ -79,13 +87,22 @@ int inSeconds(std::string raceTime) {
         else
             seconds += raceTime[i];
 
-    return std::stoi(minutes) * 60 + std::stoi(seconds);
+    for(i++; i < raceTime.length(); i++)
+        if(raceTime[i] == '.' || raceTime[i] == ':')
+            break;
+        else {
+            fraction += raceTime[i];
+            fracDenom *= 10;
+        }
+
+    return std::stoi(minutes) * 60 + std::stoi(seconds) +
+        std::stod(fraction) / fracDenom;
 }
 
 //' Converts a formatted time to its value in seconds (Vectorized).
 //'
-//' @param raceTimes The formatted times (ex: "16:26") to convert
-//' @return The seconds value for each time
+//' @param raceTimes The formatted times (ex: "16:26.731") to convert
+//' @return The seconds value for each time (ex: 986.731)
 //' @export
 // [[Rcpp::export]]
 NumericVector inSeconds(StringVector raceTimes) {
