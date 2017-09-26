@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{gradeToInt}
 \alias{gradeToInt}
-\title{Converts year abbreviations ("Sr", etc)to a grade number (12) (Vectorized).}
+\title{Converts year abbreviations ("Sr", etc) to a grade number (12) (Vectorized).}
 \usage{
 gradeToInt(grades)
 }

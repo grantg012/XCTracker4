@@ -56,7 +56,7 @@ int gradeToInt(std::string grade) {
         return 9;
 }
 
-//' Converts year abbreviations ("Sr", etc)to a grade number (12) (Vectorized).
+//' Converts year abbreviations ("Sr", etc) to a grade number (12) (Vectorized).
 //'
 //' @param grades The grade abbreviations to convert
 //' @return Integer(s) for each grade.
@@ -73,6 +73,7 @@ IntegerVector gradeToInt(StringVector grades) {
 
 double inSeconds(std::string raceTime) {
     std::string minutes = "", seconds = "", fraction = "";
+    int nullFrac = 0;
     double fracDenom = 1;
     unsigned int i = 0;
     for(; i < raceTime.length(); i++)
@@ -95,8 +96,11 @@ double inSeconds(std::string raceTime) {
             fracDenom *= 10;
         }
 
+    if(fraction.length() > 0) // Only allow stod() calls when fraction != ""
+        nullFrac = std::stod(fraction);
+
     return std::stoi(minutes) * 60 + std::stoi(seconds) +
-        std::stod(fraction) / fracDenom;
+        nullFrac / fracDenom;
 }
 
 //' Converts a formatted time to its value in seconds (Vectorized).
