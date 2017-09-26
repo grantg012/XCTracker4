@@ -7,9 +7,11 @@
 convertPAMS(lines, dfResults)
 }
 \arguments{
-\item{lines}{The text of the results to convert.}
+\item{lines}{The text of the results to convert. This should be
+a string vector with each line as 1 element.}
 
-\item{dfResults}{A prebuilt data frame to store results into}
+\item{dfResults}{A prebuilt data frame to store results into.
+Must have c("Place", "Name", "Grade", "School", "Time") as column names.}
 }
 \description{
 Interprets text and stores it in a data frame.

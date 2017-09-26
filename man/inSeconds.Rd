@@ -7,10 +7,10 @@
 inSeconds(raceTimes)
 }
 \arguments{
-\item{raceTimes}{The formatted times (ex: "16:26") to convert}
+\item{raceTimes}{The formatted times (ex: "16:26.731") to convert}
 }
 \value{
-The seconds value for each time
+The seconds value for each time (ex: 986.731)
 }
 \description{
 Converts a formatted time to its value in seconds (Vectorized).
