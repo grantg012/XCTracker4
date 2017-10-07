@@ -23,18 +23,18 @@ int gradeToIntRH(std::string grade) {
 void removeDistrictNumber(StringVector schoolNames) {
     // This method removes the district from strings in a vector.
     // Ex: Wilson (3) becomes Wilson
-
+    
     for(int i = 0; i < schoolNames.size(); i++) {
         bool modified = false;
         std::string school = std::string(schoolNames[i]);
-
+        
         // Remove the number, parenthesis and trailing spaces.
         while(school.back() == ' ' || school.back() == '('
-                || school.back() == ')' || isdigit(school.back())) {
+                  || school.back() == ')' || isdigit(school.back())) {
             school.pop_back();
             modified = true;
         }
-
+        
         // Update if the string was modified
         if(modified)
             schoolNames[i] = school;
@@ -58,13 +58,13 @@ void convertRH(StringVector lines, List dfResults, bool hasRaceNumbers) {
     StringVector mileSplits = dfResults["MileSplit"];
     StringVector mile2Splits = dfResults["Mile2Split"];
     StringVector paces = dfResults["MilePace"];
-
+    
     int row = 0;
     for(int i = 0; i < lines.size(); i++)
     {
         // Initialize the string for this runner's line
         std::string line = std::string(lines[i]);
-
+        
         // Skip over the line if not a runner
         if(line.size() <= 1 || line[0] != ' ')
             continue;
@@ -102,13 +102,18 @@ void convertRH(StringVector lines, List dfResults, bool hasRaceNumbers) {
 
 
     // Name
-        std::string name = lineList.front() + ' ';
+        std::string name = lineList.front();
         lineList.pop_front();
-        name += lineList.front();
-        lineList.pop_front();
-        name.pop_back(); // Removes trailing comma
+        // until the next character is a number (for grade)
+        std::string el = lineList.front();
+        while(el[el.length() - 1] != ',')
+        {
+            name += ' ';
+            name += el;
+            lineList.pop_front();
+        }
         names[row] = name;
-
+        
 
     // Grade
         grades[row] = gradeToIntRH(lineList.front());
