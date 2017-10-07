@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // toTime
 StringVector toTime(NumericVector prmSeconds);
-RcppExport SEXP XCTrackerCpp4_toTime(SEXP prmSecondsSEXP) {
+RcppExport SEXP _XCTrackerCpp_toTime(SEXP prmSecondsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -18,7 +18,7 @@ END_RCPP
 }
 // gradeToInt
 IntegerVector gradeToInt(StringVector grades);
-RcppExport SEXP XCTrackerCpp4_gradeToInt(SEXP gradesSEXP) {
+RcppExport SEXP _XCTrackerCpp_gradeToInt(SEXP gradesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -29,7 +29,7 @@ END_RCPP
 }
 // inSeconds
 NumericVector inSeconds(StringVector raceTimes);
-RcppExport SEXP XCTrackerCpp4_inSeconds(SEXP raceTimesSEXP) {
+RcppExport SEXP _XCTrackerCpp_inSeconds(SEXP raceTimesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -40,7 +40,7 @@ END_RCPP
 }
 // milePace
 StringVector milePace(StringVector raceTime, double distance);
-RcppExport SEXP XCTrackerCpp4_milePace(SEXP raceTimeSEXP, SEXP distanceSEXP) {
+RcppExport SEXP _XCTrackerCpp_milePace(SEXP raceTimeSEXP, SEXP distanceSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -52,7 +52,7 @@ END_RCPP
 }
 // timeDifference
 StringVector timeDifference(CharacterVector lowerTime, CharacterVector higherTime);
-RcppExport SEXP XCTrackerCpp4_timeDifference(SEXP lowerTimeSEXP, SEXP higherTimeSEXP) {
+RcppExport SEXP _XCTrackerCpp_timeDifference(SEXP lowerTimeSEXP, SEXP higherTimeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -64,7 +64,7 @@ END_RCPP
 }
 // sumOfFive
 int sumOfFive(IntegerVector places);
-RcppExport SEXP XCTrackerCpp4_sumOfFive(SEXP placesSEXP) {
+RcppExport SEXP _XCTrackerCpp_sumOfFive(SEXP placesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -75,7 +75,7 @@ END_RCPP
 }
 // placeDot
 std::string placeDot(std::string word);
-RcppExport SEXP XCTrackerCpp4_placeDot(SEXP wordSEXP) {
+RcppExport SEXP _XCTrackerCpp_placeDot(SEXP wordSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -86,7 +86,7 @@ END_RCPP
 }
 // placeDotC
 std::string placeDotC(std::string word);
-RcppExport SEXP XCTrackerCpp4_placeDotC(SEXP wordSEXP) {
+RcppExport SEXP _XCTrackerCpp_placeDotC(SEXP wordSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -97,7 +97,7 @@ END_RCPP
 }
 // scoreDot
 std::string scoreDot(std::string word);
-RcppExport SEXP XCTrackerCpp4_scoreDot(SEXP wordSEXP) {
+RcppExport SEXP _XCTrackerCpp_scoreDot(SEXP wordSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -108,7 +108,7 @@ END_RCPP
 }
 // scoreDotC
 std::string scoreDotC(std::string word);
-RcppExport SEXP XCTrackerCpp4_scoreDotC(SEXP wordSEXP) {
+RcppExport SEXP _XCTrackerCpp_scoreDotC(SEXP wordSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -119,7 +119,7 @@ END_RCPP
 }
 // timeDot
 std::string timeDot(std::string word);
-RcppExport SEXP XCTrackerCpp4_timeDot(SEXP wordSEXP) {
+RcppExport SEXP _XCTrackerCpp_timeDot(SEXP wordSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -130,7 +130,7 @@ END_RCPP
 }
 // timeDotC
 std::string timeDotC(std::string word);
-RcppExport SEXP XCTrackerCpp4_timeDotC(SEXP wordSEXP) {
+RcppExport SEXP _XCTrackerCpp_timeDotC(SEXP wordSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -141,7 +141,7 @@ END_RCPP
 }
 // convertPAMS
 void convertPAMS(StringVector lines, List dfResults);
-RcppExport SEXP XCTrackerCpp4_convertPAMS(SEXP linesSEXP, SEXP dfResultsSEXP) {
+RcppExport SEXP _XCTrackerCpp_convertPAMS(SEXP linesSEXP, SEXP dfResultsSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type lines(linesSEXP);
@@ -152,7 +152,7 @@ END_RCPP
 }
 // removeDistrictNumber
 void removeDistrictNumber(StringVector schoolNames);
-RcppExport SEXP XCTrackerCpp4_removeDistrictNumber(SEXP schoolNamesSEXP) {
+RcppExport SEXP _XCTrackerCpp_removeDistrictNumber(SEXP schoolNamesSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type schoolNames(schoolNamesSEXP);
@@ -162,7 +162,7 @@ END_RCPP
 }
 // convertRH
 void convertRH(StringVector lines, List dfResults, bool hasRaceNumbers);
-RcppExport SEXP XCTrackerCpp4_convertRH(SEXP linesSEXP, SEXP dfResultsSEXP, SEXP hasRaceNumbersSEXP) {
+RcppExport SEXP _XCTrackerCpp_convertRH(SEXP linesSEXP, SEXP dfResultsSEXP, SEXP hasRaceNumbersSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< StringVector >::type lines(linesSEXP);
@@ -171,4 +171,28 @@ BEGIN_RCPP
     convertRH(lines, dfResults, hasRaceNumbers);
     return R_NilValue;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_XCTrackerCpp_toTime", (DL_FUNC) &_XCTrackerCpp_toTime, 1},
+    {"_XCTrackerCpp_gradeToInt", (DL_FUNC) &_XCTrackerCpp_gradeToInt, 1},
+    {"_XCTrackerCpp_inSeconds", (DL_FUNC) &_XCTrackerCpp_inSeconds, 1},
+    {"_XCTrackerCpp_milePace", (DL_FUNC) &_XCTrackerCpp_milePace, 2},
+    {"_XCTrackerCpp_timeDifference", (DL_FUNC) &_XCTrackerCpp_timeDifference, 2},
+    {"_XCTrackerCpp_sumOfFive", (DL_FUNC) &_XCTrackerCpp_sumOfFive, 1},
+    {"_XCTrackerCpp_placeDot", (DL_FUNC) &_XCTrackerCpp_placeDot, 1},
+    {"_XCTrackerCpp_placeDotC", (DL_FUNC) &_XCTrackerCpp_placeDotC, 1},
+    {"_XCTrackerCpp_scoreDot", (DL_FUNC) &_XCTrackerCpp_scoreDot, 1},
+    {"_XCTrackerCpp_scoreDotC", (DL_FUNC) &_XCTrackerCpp_scoreDotC, 1},
+    {"_XCTrackerCpp_timeDot", (DL_FUNC) &_XCTrackerCpp_timeDot, 1},
+    {"_XCTrackerCpp_timeDotC", (DL_FUNC) &_XCTrackerCpp_timeDotC, 1},
+    {"_XCTrackerCpp_convertPAMS", (DL_FUNC) &_XCTrackerCpp_convertPAMS, 2},
+    {"_XCTrackerCpp_removeDistrictNumber", (DL_FUNC) &_XCTrackerCpp_removeDistrictNumber, 1},
+    {"_XCTrackerCpp_convertRH", (DL_FUNC) &_XCTrackerCpp_convertRH, 3},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_XCTrackerCpp(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }
