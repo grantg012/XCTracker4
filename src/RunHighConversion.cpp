@@ -115,7 +115,7 @@ void convertRH(StringVector lines, List dfResults, bool hasRaceNumbers) {
             lineList.pop_front();
             previousWasEnd = el[el.length() - 1] == ',';
             el = lineList.front();
-            if(isdigit(lineList.front()[0])) {
+            if(isdigit(lineList.front()[0])) { 
                 noGrade = true;
                 break;
             }
