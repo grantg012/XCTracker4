@@ -107,6 +107,7 @@ void convertRH(StringVector lines, List dfResults, bool hasRaceNumbers) {
         // until the next character is a number (for grade)
         std::string el = lineList.front();
         bool previousWasEnd = false;
+        bool noGrade = false;
         while(!previousWasEnd)
         {
             name += ' ';
@@ -114,14 +115,22 @@ void convertRH(StringVector lines, List dfResults, bool hasRaceNumbers) {
             lineList.pop_front();
             previousWasEnd = el[el.length() - 1] == ',';
             el = lineList.front();
+            if(isdigit(lineList.front()[0])) {
+                noGrade = true;
+                break;
+            }
         }
         name.pop_back(); // Remove trailing comma
         names[row] = name;
-
+        Rcout << places[row] << ", \n";
 
     // Grade
-        grades[row] = gradeToIntRH(lineList.front());
-        lineList.pop_front();
+        if(noGrade) {
+            grades[row] = 9;
+        } else {
+            grades[row] = gradeToIntRH(lineList.front());
+            lineList.pop_front();
+        }
 
 
     // School
