@@ -129,7 +129,7 @@ convertPAMS <- function(lines, dfResults) {
 #' @param schoolNames The strings to removes numbers from.
 #' @export
 removeDistrictNumber <- function(schoolNames) {
-    invisible(.Call('XCTrackerCpp_removeDistrictNumber', PACKAGE = 'XCTrackerCpp4', schoolNames))
+    invisible(.Call('XCTrackerCpp4_removeDistrictNumber', PACKAGE = 'XCTrackerCpp4', schoolNames))
 }
 
 #' Interprets text and stores it in a data frame.
