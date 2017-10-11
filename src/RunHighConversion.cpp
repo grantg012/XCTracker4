@@ -122,7 +122,6 @@ void convertRH(StringVector lines, List dfResults, bool hasRaceNumbers) {
         }
         name.pop_back(); // Remove trailing comma
         names[row] = name;
-        Rcout << places[row] << ", \n";
 
     // Grade
         if(noGrade) {
