@@ -9,14 +9,14 @@ using namespace Rcpp;
  */
 
 
-std::string leadingZero(int value) {
+static std::string leadingZero(int value) {
     if(value < 10)
         return "0" + std::to_string(value);
     else
         return std::to_string(value);
 }
 
-std::string toTime(double prmSeconds) {
+static std::string toTime(double prmSeconds) {
     std::string time = std::to_string((int)prmSeconds / 60) + ':';
     time += leadingZero((int)prmSeconds % 60);
     int postDecimal = (int)(prmSeconds * 1000) % 1000;
@@ -38,14 +38,14 @@ std::string toTime(double prmSeconds) {
 StringVector toTime(NumericVector prmSeconds) {
     StringVector result(prmSeconds.length());
 
-    for(int i = 0; i < result.length(); i++) {
+    for(int i = 0; i < result.length(); ++i) {
         result[i] = toTime(prmSeconds[i]);
     }
 
     return result;
 }
 
-int gradeToInt(std::string grade) {
+static int gradeToInt(const std::string& grade) {
     if(grade == "Sr")
         return 12;
     else if(grade == "Jr")
@@ -65,30 +65,30 @@ int gradeToInt(std::string grade) {
 IntegerVector gradeToInt(StringVector grades) {
     IntegerVector numbers(grades.length());
 
-    for(int i = 0; i < grades.length(); i++)
+    for(int i = 0; i < grades.length(); ++i)
         numbers[i] = gradeToInt(as<std::string>(grades[i]));
 
     return numbers;
 }
 
-double inSeconds(std::string raceTime) {
+static double inSeconds(const std::string& raceTime) {
     std::string minutes = "", seconds = "", fraction = "";
-    int nullFrac = 0;
+    int fractionNumerator = 0;
     double fracDenom = 1;
     unsigned int i = 0;
-    for(; i < raceTime.length(); i++)
+    for(; i < raceTime.length(); ++i)
         if(raceTime[i] == '.' || raceTime[i] == ':')
             break;
         else
             minutes += raceTime[i];
 
-    for(i++; i < raceTime.length(); i++)
+    for(++i; i < raceTime.length(); ++i)
         if(raceTime[i] == '.' || raceTime[i] == ':')
             break;
         else
             seconds += raceTime[i];
 
-    for(i++; i < raceTime.length(); i++)
+    for(++i; i < raceTime.length(); ++i)
         if(raceTime[i] == '.' || raceTime[i] == ':')
             break;
         else {
@@ -96,11 +96,11 @@ double inSeconds(std::string raceTime) {
             fracDenom *= 10;
         }
 
-    if(fraction.length() > 0) // Only allow stoi() calls when fraction != ""
-        nullFrac = std::stoi(fraction);
+    if(fraction.length()) // Only allow stoi() calls when fraction != ""
+        fractionNumerator = std::stoi(fraction);
 
     return std::stoi(minutes) * 60 + std::stoi(seconds) +
-        nullFrac / fracDenom;
+        fractionNumerator / fracDenom;
 }
 
 //' Converts a formatted time to its value in seconds (Vectorized).
@@ -112,7 +112,7 @@ double inSeconds(std::string raceTime) {
 NumericVector inSeconds(StringVector raceTimes) {
     NumericVector numbers(raceTimes.length());
 
-    for(int i = 0; i < numbers.length(); i++)
+    for(int i = 0; i < numbers.length(); ++i)
         numbers[i] = inSeconds(as<std::string>(raceTimes[i]));
 
     return numbers;
@@ -144,7 +144,7 @@ StringVector timeDifference(CharacterVector lowerTime, CharacterVector higherTim
     }
     StringVector result(shortest);
 
-    for(int i = 0; i < result.length(); i++) {
+    for(int i = 0; i < result.length(); ++i) {
         // Rcout << lowerTime[i] << " " << higherTime[i] << "\n";
         if(CharacterVector::is_na(lowerTime[i]) || CharacterVector::is_na(higherTime[i])) {
             result[i] = NA_STRING;
@@ -167,7 +167,7 @@ int sumOfFive(IntegerVector places) {
         return -1;
 
     int total = 0;
-    for(int i = 0; i < 5; i++) // 0-based
+    for(int i = 0; i < 5; ++i) // 0-based
         total += places[i];
     return total;
 }

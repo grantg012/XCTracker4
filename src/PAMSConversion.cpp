@@ -22,10 +22,10 @@ void convertPAMS(StringVector lines, List dfResults) {
     StringVector times = dfResults["Time"];
 
     int row = 0;
-    for(int i = 0; i < lines.size(); i++)
+    for(int i = 0; i < lines.size(); ++i)
     {
         // Initialize the string for this runner's line
-        std::string line = std::string(lines[i]);
+        std::string line{lines[i]};
 
         // Skip over the line if not a runner
         if(line.size() <= 1)
@@ -34,7 +34,7 @@ void convertPAMS(StringVector lines, List dfResults) {
         std::list<std::string> lineList {};
         std::string current = "";
 
-        for(unsigned int posInLine = 0; posInLine < line.length(); posInLine++) {
+        for(unsigned int posInLine = 0; posInLine < line.length(); ++posInLine) {
             if(line[posInLine] == ' ' || line[posInLine] == '\t') {
                 // If there are characters to add
                 if(!current.empty()) {
@@ -91,6 +91,6 @@ void convertPAMS(StringVector lines, List dfResults) {
         }
         schools[row] = schoolName;
 
-        row++;
+        ++row;
     }
 }

@@ -4,7 +4,7 @@
 using namespace Rcpp;
 // [[Rcpp::plugins(cpp11)]]
 
-int gradeToIntRH(std::string grade) {
+static int gradeToIntRH(const std::string& grade) {
     if(grade == "Sr")
         return 12;
     else if(grade == "Jr")
@@ -24,9 +24,9 @@ void removeDistrictNumber(StringVector schoolNames) {
     // This method removes the district from strings in a vector.
     // Ex: Wilson (3) becomes Wilson
 
-    for(int i = 0; i < schoolNames.size(); i++) {
+    for(int i = 0; i < schoolNames.size(); ++i) {
         bool modified = false;
-        std::string school = std::string(schoolNames[i]);
+        std::string school{(s}choolNames[i]};
 
         // Remove the number, parenthesis and trailing spaces.
         while(school.back() == ' ' || school.back() == '('
@@ -60,10 +60,10 @@ void convertRH(StringVector lines, List dfResults, bool hasRaceNumbers) {
     StringVector paces = dfResults["MilePace"];
 
     int row = 0;
-    for(int i = 0; i < lines.size(); i++)
+    for(int i = 0; i < lines.size(); ++i)
     {
         // Initialize the string for this runner's line
-        std::string line = std::string(lines[i]);
+        std::string line{lines[i]};
 
         // Skip over the line if not a runner
         if(line.size() <= 1 || line[0] != ' ')
@@ -72,7 +72,7 @@ void convertRH(StringVector lines, List dfResults, bool hasRaceNumbers) {
         std::list<std::string> lineList {};
         std::string current = "";
 
-        for(unsigned int posInLine = 0; posInLine < line.length(); posInLine++) {
+        for(unsigned int posInLine = 0; posInLine < line.length(); ++posInLine) {
             // If there are characters to add
             if(line[posInLine] == ' ') {
                 if(!current.empty()) {
@@ -115,7 +115,7 @@ void convertRH(StringVector lines, List dfResults, bool hasRaceNumbers) {
             lineList.pop_front();
             previousWasEnd = el[el.length() - 1] == ',';
             el = lineList.front();
-            if(isdigit(lineList.front()[0])) { 
+            if(isdigit(lineList.front()[0])) {
                 noGrade = true;
                 break;
             }
@@ -156,7 +156,7 @@ void convertRH(StringVector lines, List dfResults, bool hasRaceNumbers) {
     // 1-MileSplit and place
         // Exit this runner if there is no milesplit
         if(lineList.empty()) {
-            row++;
+            ++row;
             continue;
         }
 
@@ -173,7 +173,7 @@ void convertRH(StringVector lines, List dfResults, bool hasRaceNumbers) {
     // 2-MileSplit and place
         // Exit this runner if there is no 2-milesplit
         if(lineList.empty()) {
-            row++;
+            ++row;
             continue;
         }
 
@@ -187,6 +187,6 @@ void convertRH(StringVector lines, List dfResults, bool hasRaceNumbers) {
             lineList.pop_front();
         }
 
-        row++;
+        ++row;
     }
 }
