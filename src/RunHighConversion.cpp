@@ -26,7 +26,7 @@ void removeDistrictNumber(StringVector schoolNames) {
 
     for(int i = 0; i < schoolNames.size(); ++i) {
         bool modified = false;
-        std::string school{(s}choolNames[i]};
+        std::string school{schoolNames[i]};
 
         // Remove the number, parenthesis and trailing spaces.
         while(school.back() == ' ' || school.back() == '('

@@ -9,16 +9,16 @@
 #' @useDynLib XCTrackerCpp4
 #' @importFrom Rcpp evalCpp
 toTime <- function(prmSeconds) {
-    .Call('XCTrackerCpp4_toTime', PACKAGE = 'XCTrackerCpp4', prmSeconds)
+    .Call('_XCTrackerCpp4_toTime', PACKAGE = 'XCTrackerCpp4', prmSeconds)
 }
 
-#' Converts year abbreviations ("Sr", etc)to a grade number (12) (Vectorized).
+#' Converts year abbreviations ("Sr", etc) to a grade number (12) (Vectorized).
 #'
 #' @param grades The grade abbreviations to convert
 #' @return Integer(s) for each grade.
 #' @export
 gradeToInt <- function(grades) {
-    .Call('XCTrackerCpp4_gradeToInt', PACKAGE = 'XCTrackerCpp4', grades)
+    .Call('_XCTrackerCpp4_gradeToInt', PACKAGE = 'XCTrackerCpp4', grades)
 }
 
 #' Converts a formatted time to its value in seconds (Vectorized).
@@ -27,7 +27,7 @@ gradeToInt <- function(grades) {
 #' @return The seconds value for each time (ex: 986.731)
 #' @export
 inSeconds <- function(raceTimes) {
-    .Call('XCTrackerCpp4_inSeconds', PACKAGE = 'XCTrackerCpp4', raceTimes)
+    .Call('_XCTrackerCpp4_inSeconds', PACKAGE = 'XCTrackerCpp4', raceTimes)
 }
 
 #' Calculates the milepace  (Vectorized).
@@ -37,7 +37,7 @@ inSeconds <- function(raceTimes) {
 #' @return A formatted string of each milepace.
 #' @export
 milePace <- function(raceTime, distance = 3.1) {
-    .Call('XCTrackerCpp4_milePace', PACKAGE = 'XCTrackerCpp4', raceTime, distance)
+    .Call('_XCTrackerCpp4_milePace', PACKAGE = 'XCTrackerCpp4', raceTime, distance)
 }
 
 #' Calculates and formats the difference between two times.
@@ -47,7 +47,7 @@ milePace <- function(raceTime, distance = 3.1) {
 #' @return A formatted string of the difference between the two times.
 #' @export
 timeDifference <- function(lowerTime, higherTime) {
-    .Call('XCTrackerCpp4_timeDifference', PACKAGE = 'XCTrackerCpp4', lowerTime, higherTime)
+    .Call('_XCTrackerCpp4_timeDifference', PACKAGE = 'XCTrackerCpp4', lowerTime, higherTime)
 }
 
 #' Sums the first 5 elements of the vector.
@@ -56,7 +56,7 @@ timeDifference <- function(lowerTime, higherTime) {
 #' @return The sum of the first 5 elements or -1 if less than 5 are present.
 #' @export
 sumOfFive <- function(places) {
-    .Call('XCTrackerCpp4_sumOfFive', PACKAGE = 'XCTrackerCpp4', places)
+    .Call('_XCTrackerCpp4_sumOfFive', PACKAGE = 'XCTrackerCpp4', places)
 }
 
 #' Appends word to the prefix "Place."
@@ -65,7 +65,7 @@ sumOfFive <- function(places) {
 #' @return The concatenation of "Place." and word.
 #' @export
 placeDot <- function(word) {
-    .Call('XCTrackerCpp4_placeDot', PACKAGE = 'XCTrackerCpp4', word)
+    .Call('_XCTrackerCpp4_placeDot', PACKAGE = 'XCTrackerCpp4', word)
 }
 
 #' Appends the first character of word to the prefix "Place."
@@ -74,7 +74,7 @@ placeDot <- function(word) {
 #' @return The concatenation of "Place." and word's first character.
 #' @export
 placeDotC <- function(word) {
-    .Call('XCTrackerCpp4_placeDotC', PACKAGE = 'XCTrackerCpp4', word)
+    .Call('_XCTrackerCpp4_placeDotC', PACKAGE = 'XCTrackerCpp4', word)
 }
 
 #' Appends word to the prefix "Score."
@@ -83,7 +83,7 @@ placeDotC <- function(word) {
 #' @return The concatenation of "Score." and word.
 #' @export
 scoreDot <- function(word) {
-    .Call('XCTrackerCpp4_scoreDot', PACKAGE = 'XCTrackerCpp4', word)
+    .Call('_XCTrackerCpp4_scoreDot', PACKAGE = 'XCTrackerCpp4', word)
 }
 
 #' Appends the first character of word to the prefix "Score."
@@ -92,7 +92,7 @@ scoreDot <- function(word) {
 #' @return The concatenation of "Score." and word's first character.
 #' @export
 scoreDotC <- function(word) {
-    .Call('XCTrackerCpp4_scoreDotC', PACKAGE = 'XCTrackerCpp4', word)
+    .Call('_XCTrackerCpp4_scoreDotC', PACKAGE = 'XCTrackerCpp4', word)
 }
 
 #' Appends word to the prefix "Time."
@@ -101,7 +101,7 @@ scoreDotC <- function(word) {
 #' @return The concatenation of "Time." and word.
 #' @export
 timeDot <- function(word) {
-    .Call('XCTrackerCpp4_timeDot', PACKAGE = 'XCTrackerCpp4', word)
+    .Call('_XCTrackerCpp4_timeDot', PACKAGE = 'XCTrackerCpp4', word)
 }
 
 #' Appends the first character of word to the prefix "Time."
@@ -110,7 +110,7 @@ timeDot <- function(word) {
 #' @return The concatenation of "Time." and word's first character.
 #' @export
 timeDotC <- function(word) {
-    .Call('XCTrackerCpp4_timeDotC', PACKAGE = 'XCTrackerCpp4', word)
+    .Call('_XCTrackerCpp4_timeDotC', PACKAGE = 'XCTrackerCpp4', word)
 }
 
 #' Interprets text and stores it in a data frame.
@@ -121,7 +121,7 @@ timeDotC <- function(word) {
 #' Must have c("Place", "Name", "Grade", "School", "Time") as column names.
 #' @export
 convertPAMS <- function(lines, dfResults) {
-    invisible(.Call('XCTrackerCpp4_convertPAMS', PACKAGE = 'XCTrackerCpp4', lines, dfResults))
+    invisible(.Call('_XCTrackerCpp4_convertPAMS', PACKAGE = 'XCTrackerCpp4', lines, dfResults))
 }
 
 #' Modifies the vector to remove any parenthesis numbers (eg "(3)").
@@ -129,7 +129,7 @@ convertPAMS <- function(lines, dfResults) {
 #' @param schoolNames The strings to removes numbers from.
 #' @export
 removeDistrictNumber <- function(schoolNames) {
-    invisible(.Call('XCTrackerCpp4_removeDistrictNumber', PACKAGE = 'XCTrackerCpp4', schoolNames))
+    invisible(.Call('_XCTrackerCpp4_removeDistrictNumber', PACKAGE = 'XCTrackerCpp4', schoolNames))
 }
 
 #' Interprets text and stores it in a data frame.
@@ -139,6 +139,6 @@ removeDistrictNumber <- function(schoolNames) {
 #' @param hasRaceNumbers TRUE/FALSE the results have race numbers as the first column.
 #' @export
 convertRH <- function(lines, dfResults, hasRaceNumbers) {
-    invisible(.Call('XCTrackerCpp4_convertRH', PACKAGE = 'XCTrackerCpp4', lines, dfResults, hasRaceNumbers))
+    invisible(.Call('_XCTrackerCpp4_convertRH', PACKAGE = 'XCTrackerCpp4', lines, dfResults, hasRaceNumbers))
 }
 
