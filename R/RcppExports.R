@@ -123,6 +123,17 @@ keepMedian <- function(times, preferLower = TRUE) {
     .Call('_XCTrackerCpp4_keepMedian', PACKAGE = 'XCTrackerCpp4', times, preferLower)
 }
 
+#' Returns the index of the median, or the closest element. Closest is defined as closest to
+#' the average. An empty vector will see an empty vector returned.
+#'
+#' @param times A numeric vector to find the median index of.
+#' @param preferLower If there is a tie in even length vectors which element to keep.
+#' @return The index of the median, or the closest element's index.
+#' @export
+pickMedian <- function(times, preferLower = TRUE) {
+    .Call('_XCTrackerCpp4_pickMedian', PACKAGE = 'XCTrackerCpp4', times, preferLower)
+}
+
 #' Interprets text and stores it in a data frame.
 #'
 #' @param lines The text of the results to convert. This should be

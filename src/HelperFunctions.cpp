@@ -238,6 +238,7 @@ std::string timeDotC(std::string word) {
     return result;
 }
 
+
 static double mean(NumericVector values) {
     double sum = 0.0;
     for(unsigned int i = 0; i < values.length(); ++i) {
@@ -250,6 +251,24 @@ static double abs(double x) {
     return x > 0 ? x : -x;
 }
 
+static unsigned int indexOfMedian(NumericVector values, bool preferLower = true) {
+    if(values.length() % 2) {
+        // odd
+        return values.length() / 2;
+    } else if(values.length() > 0) {
+        // even
+        unsigned int lowerIndex = values.length() / 2 - 1;
+        double av = mean(values);
+        double distLower = abs(av - values[lowerIndex]);
+        double distHigher = abs(av - values[lowerIndex + 1]);
+       return lowerIndex +
+            (distHigher < distLower || (distHigher == distLower && !preferLower));
+    } else {
+        // empty
+        return 0;
+    }
+}
+
 //' Returns a boolean vector with the element that is the median as true
 //' (or the closest element to the average).
 //'
@@ -259,19 +278,25 @@ static double abs(double x) {
 // [[Rcpp::export]]
 LogicalVector keepMedian(NumericVector times, bool preferLower = true) {
     LogicalVector result(times.length(), false);
-    if(times.length() % 2) {
-        // odd
-        result[times.length() / 2] = true;
-    } else if(times.length() > 0) {
-        // even
-        unsigned int lowerIndex = times.length() / 2 - 1;
-        double av = mean(times);
-        double distLower = abs(av - times[lowerIndex]);
-        double distHigher = abs(av - times[lowerIndex + 1]);
-        unsigned int medianIndex = lowerIndex +
-            (distHigher < distLower || (distHigher == distLower && !preferLower));
-        result[medianIndex] = true;
+    if(times.length()) {
+        result[indexOfMedian(times, preferLower)] = true;
     }
     return result;
+}
+
+//' Returns the index of the median, or the closest element. Closest is defined as closest to
+//' the average. An empty vector will see an empty vector returned.
+//'
+//' @param times A numeric vector to find the median index of.
+//' @param preferLower If there is a tie in even length vectors which element to keep.
+//' @return The index of the median, or the closest element's index.
+//' @export
+// [[Rcpp::export]]
+IntegerVector pickMedian(NumericVector times, bool preferLower = true) {
+    if(!times.length())
+        // emtpty
+        return IntegerVector::create();
+
+    return IntegerVector::create(indexOfMedian(times, preferLower) + 1);
 }
 

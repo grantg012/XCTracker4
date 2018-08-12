@@ -1,7 +1,7 @@
 Package: XCTrackerCpp4
 Type: Package
 Title: C++ Helper functions and RunHigh conversion for XCTracker
-Version: 0.2.0
+Version: 0.3.0
 Author: Grant Geyer
 Maintainer: Grant Geyer <GrantG012@yahoo.com>
 Description: This contains many of the common functions used in the XCTracker 
