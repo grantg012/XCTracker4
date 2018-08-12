@@ -139,6 +139,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// keepMedian
+LogicalVector keepMedian(NumericVector times, bool preferLower);
+RcppExport SEXP _XCTrackerCpp4_keepMedian(SEXP timesSEXP, SEXP preferLowerSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type times(timesSEXP);
+    Rcpp::traits::input_parameter< bool >::type preferLower(preferLowerSEXP);
+    rcpp_result_gen = Rcpp::wrap(keepMedian(times, preferLower));
+    return rcpp_result_gen;
+END_RCPP
+}
 // convertPAMS
 void convertPAMS(StringVector lines, List dfResults);
 RcppExport SEXP _XCTrackerCpp4_convertPAMS(SEXP linesSEXP, SEXP dfResultsSEXP) {
@@ -186,6 +198,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_XCTrackerCpp4_scoreDotC", (DL_FUNC) &_XCTrackerCpp4_scoreDotC, 1},
     {"_XCTrackerCpp4_timeDot", (DL_FUNC) &_XCTrackerCpp4_timeDot, 1},
     {"_XCTrackerCpp4_timeDotC", (DL_FUNC) &_XCTrackerCpp4_timeDotC, 1},
+    {"_XCTrackerCpp4_keepMedian", (DL_FUNC) &_XCTrackerCpp4_keepMedian, 2},
     {"_XCTrackerCpp4_convertPAMS", (DL_FUNC) &_XCTrackerCpp4_convertPAMS, 2},
     {"_XCTrackerCpp4_removeDistrictNumber", (DL_FUNC) &_XCTrackerCpp4_removeDistrictNumber, 1},
     {"_XCTrackerCpp4_convertRH", (DL_FUNC) &_XCTrackerCpp4_convertRH, 3},

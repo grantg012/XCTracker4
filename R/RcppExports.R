@@ -113,6 +113,16 @@ timeDotC <- function(word) {
     .Call('_XCTrackerCpp4_timeDotC', PACKAGE = 'XCTrackerCpp4', word)
 }
 
+#' Returns a boolean vector with the element that is the median as true
+#' (or the closest element to the average).
+#'
+#' @param times A numeric vector to find the median index of.
+#' @return A logical vector with 1 true value.
+#' @export
+keepMedian <- function(times, preferLower = TRUE) {
+    .Call('_XCTrackerCpp4_keepMedian', PACKAGE = 'XCTrackerCpp4', times, preferLower)
+}
+
 #' Interprets text and stores it in a data frame.
 #'
 #' @param lines The text of the results to convert. This should be

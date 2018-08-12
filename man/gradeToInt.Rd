@@ -13,5 +13,5 @@ gradeToInt(grades)
 Integer(s) for each grade.
 }
 \description{
-Converts year abbreviations ("Sr", etc)to a grade number (12) (Vectorized).
+Converts year abbreviations ("Sr", etc) to a grade number (12) (Vectorized).
 }

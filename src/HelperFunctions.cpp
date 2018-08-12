@@ -238,3 +238,40 @@ std::string timeDotC(std::string word) {
     return result;
 }
 
+static double mean(NumericVector values) {
+    double sum = 0.0;
+    for(unsigned int i = 0; i < values.length(); ++i) {
+        sum += values[i];
+    }
+    return sum / values.length();
+}
+
+static double abs(double x) {
+    return x > 0 ? x : -x;
+}
+
+//' Returns a boolean vector with the element that is the median as true
+//' (or the closest element to the average).
+//'
+//' @param times A numeric vector to find the median index of.
+//' @return A logical vector with 1 true value.
+//' @export
+// [[Rcpp::export]]
+LogicalVector keepMedian(NumericVector times, bool preferLower = true) {
+    LogicalVector result(times.length(), false);
+    if(times.length() % 2) {
+        // odd
+        result[times.length() / 2] = true;
+    } else if(times.length() > 0) {
+        // even
+        unsigned int lowerIndex = times.length() / 2 - 1;
+        double av = mean(times);
+        double distLower = abs(av - times[lowerIndex]);
+        double distHigher = abs(av - times[lowerIndex + 1]);
+        unsigned int medianIndex = lowerIndex +
+            (distHigher < distLower || (distHigher == distLower && !preferLower));
+        result[medianIndex] = true;
+    }
+    return result;
+}
+
